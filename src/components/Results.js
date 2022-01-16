@@ -3,6 +3,7 @@ import postPlaylist from '../utils/PostPlaylist';
 import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpotify } from '@fortawesome/free-brands-svg-icons';
+import Rings from './rings.svg';
 
 const Results = (props) => {
     const [items, setItems] = useState([]);
@@ -19,9 +20,12 @@ const Results = (props) => {
 
         postPlaylist(props.prompt, props.token, items);
     }
-    let displayComp = <p className="text-white text-xl">loading</p>;
+    let displayComp = <img src={Rings} className="w-48"/>;
     if (itemsLoaded) {
-        displayComp = <div className="flex flex-col w-full max-w-2xl border-t">
+        displayComp =<div className="w-full flex flex-col items-center">
+        {!created && <button onClick={createPlaylist} className={button}><FontAwesomeIcon icon={faSpotify} size="lg"/> <div className="px-1"></div>Create Playlist</button>}
+        <div className="p-2" />
+        <div className="flex flex-col w-full max-w-2xl border-t">
         {items.map((item, index) => {
             return <Song key={index}
                          artist={item.artist_name}
@@ -29,15 +33,12 @@ const Results = (props) => {
                          albumImage={item.album_image_url}
                          songUrl={item.external_url} />
         })}
-    </div>;
+    </div></div>;
     }
-
 
     return (
         <div className="flex flex-col items-center">
             <h2 className="text-2xl p-4 uppercase font-extrabold">{props.prompt}</h2>
-            {!created && <button onClick={createPlaylist} className={button}><FontAwesomeIcon icon={faSpotify} size="lg"/> <div className="px-1"></div>Create Playlist</button>}
-            <div className="p-2" />
             {displayComp}
         </div>
     )

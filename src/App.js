@@ -27,6 +27,10 @@ function App() {
     setPrompt();
   }
 
+  const resetPrompt = () => {
+    setPrompt("");
+  }
+
   useEffect(() => {
     if (window.location.hash) {
       const {access_token, expires_in, token_type} = getReturnedParamsFromSpotifyAuth(window.location.hash);
@@ -44,7 +48,7 @@ function App() {
   } else if (logged_in && prompt === "") {
     elementToRender = <Prompt handle={setPrompt}></Prompt>;
   } else {
-    elementToRender = <Results prompt={prompt} handle={logout} token={access_token}></Results>;
+    elementToRender = <Results prompt={prompt} resetPrompt={resetPrompt} handle={logout} token={access_token}></Results>;
   }
 
   return (

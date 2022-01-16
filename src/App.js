@@ -3,6 +3,7 @@ import LoginButton from './components/LoginButton';
 import Prompt from './components/Prompt';
 import Results from './components/Results';
 import About from './components/About';
+import Title from './components/Title';
 
 const getReturnedParamsFromSpotifyAuth = (hash) => {
   const stringAfterHashing = hash.substring(1);
@@ -40,10 +41,9 @@ function App() {
 
   return (
     <div className="h-full w-full flex flex-col justify-between items-center relative">
-      <div className="flex flex-col max-w-xl w-screen mx-auto">
-        <h1 className="text-5xl font-black text-left pt-8">Spotify AI</h1>
-        <p className="text-lg py-4">Enter a prompt and find songs!</p>
-        {elementToRender}
+     <div className={`flex flex-col max-w-xl w-screen h-screen mx-auto ${logged_in && prompt !== "" ? "": "top-1/4 translate-y-1/4"}`}>
+        <Title/>
+          {elementToRender}
         <div className="p-2" />
         {about}
       </div>

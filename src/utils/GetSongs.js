@@ -1,10 +1,11 @@
 const handleSongs = (prompt, token, setItems) => {
   let params = {
-      "prompt": prompt, 
-      "token": process.env.REACT_APP_CLIENT_ID
-  }
-  let url = "http://localhost:8000/api/dummy-post/"; 
-  console.log(url);
+      "phrase": prompt, 
+      "token": token,
+      "limit": 50
+  };
+  console.log(JSON.stringify(params));
+  let url = "http://localhost:8000/api/create"; 
   fetch(url, {
       method: 'POST',
       headers: {
@@ -13,13 +14,14 @@ const handleSongs = (prompt, token, setItems) => {
       },
       body: JSON.stringify(params)
     })
+    .then((res) => console.log(res))
     .then((res) => res.json())
     .then((res) => {
-        setSongs(res.songs);
-        console.log("songs: " + songs + "resp: " + res.songs) 
+        console.log(res) 
+        setItems(res);
     })
     .catch((err) => {
-        console.log("error");
+        console.log(err);
     });
 
     let items = [

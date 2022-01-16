@@ -5,7 +5,7 @@ import { faSpotify } from '@fortawesome/free-brands-svg-icons';
 const SPOTIFY_AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
 const REDIRECT_URL_AFTER_LOGIN = "http://localhost:3000/";
 const SPACE_DELIMETER = "%20";
-const SCOPES = ["user-read-private", "user-read-email"];
+const SCOPES = ["playlist-read-private", "playlist-modify-public", "playlist-modify-private", "user-library-read"];
 const SCOPES_URL_PARAM = SCOPES.join(SPACE_DELIMETER);
 const RESPONSE_TYPE = "code";
 

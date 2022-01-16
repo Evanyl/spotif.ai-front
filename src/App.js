@@ -20,6 +20,7 @@ const getReturnedParamsFromSpotifyAuth = (hash) => {
 function App() {
   const [logged_in, setLogged_in] = useState(false);
   const [prompt, setPrompt] = useState("");
+  const [access_token, setAccess_token] = useState("");
 
   const logout = () => {
     setLogged_in(false);
@@ -29,6 +30,7 @@ function App() {
   useEffect(() => {
     if (window.location.hash) {
       const {access_token, expires_in, token_type} = getReturnedParamsFromSpotifyAuth(window.location.hash);
+      setAccess_token(access_token);
       setLogged_in(true);
     }
   });
@@ -42,7 +44,7 @@ function App() {
   } else if (logged_in && prompt === "") {
     elementToRender = <Prompt handle={setPrompt}></Prompt>;
   } else {
-    elementToRender = <Results prompt={prompt} handle={logout} token={}></Results>;
+    elementToRender = <Results prompt={prompt} handle={logout} token={access_token}></Results>;
   }
 
   return (

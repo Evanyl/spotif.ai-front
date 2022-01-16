@@ -5,7 +5,7 @@ const Results = (props) => {
     const [items, setItems] = useState([]);
 
     useEffect(() => {
-        handleSongs(props.prompt, setItems);
+        handleSongs(props.prompt, props.token, setItems);
     }, [props.prompt]);
 
 

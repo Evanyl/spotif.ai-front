@@ -42,7 +42,7 @@ function App() {
   } else if (logged_in && prompt === "") {
     elementToRender = <Prompt handle={setPrompt}></Prompt>;
   } else {
-    elementToRender = <Results prompt={prompt} handle={logout}></Results>;
+    elementToRender = <Results prompt={prompt} handle={logout} token={}></Results>;
   }
 
   return (

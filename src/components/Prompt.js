@@ -11,7 +11,7 @@ const Prompt = (props) => {
 
     return (
         <form onSubmit={submit} className="flex flex-col w-5/6 h-full">
-            <textarea className="w-full h-[10%] rounded-md" value={prompt} onChange={e => setPrompt(e.target.value)} />
+            <textarea placeholder="What are you feeling..." className="outline-0 p-3 text-[#9CA3AF] w-full h-[10%] rounded-lg text text-2xl bg-[#111827] border border-white" value={prompt} onChange={e => setPrompt(e.target.value)} />
             <div className="p-2" />
             <button className={button} type="submit" value="Submit">Next</button>
         </form>

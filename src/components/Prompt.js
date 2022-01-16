@@ -6,8 +6,7 @@ const Prompt = (props) => {
     const button = "flex max-w-xs items-center justify-center text-base font-medium rounded-md text-black bg-green-300 hover:bg-green-400 px-8 py-3 md:py-4 md:text-lg md:px-10";
 
     const submit = () => {
-        props.handlePrompt(prompt);
-        props.getSongs(prompt)
+        props.handle(prompt);
     }
 
     return (

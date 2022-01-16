@@ -6,6 +6,18 @@ Built for nwHacks 2022
 
 This is the repo for the backend client of spotif.ai
 
+## Features
+
+![Home/Login page](./assets/spotifai-login.PNG)
+
+You can:
+
+- enter a prompt
+![Entering a prompt](./assets/spotifai-prompt.PNG)
+- see generated songs based on your personal music taste, seeded by your prompt
+- create a playlist of your generated songs!
+![Generated playlist](./assets/spotifai-playlist.PNG)
+
 ## Technologies
 
 - React

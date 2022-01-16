@@ -16,9 +16,9 @@ const Results = (props) => {
             <div className="flex flex-col w-full max-w-2xl border-t">
                 {items.map((item, index) => {
                     return <Song key={index}
-                                 artist={item.artist}
+                                 artist={item.artist_name}
                                  songTitle={item.name}
-                                 albumImage={item.album_image.url}
+                                 albumImage={item.album_image_url}
                                  songUrl={item.external_url} />
                 })}
             </div>

@@ -6,6 +6,8 @@ Built for nwHacks 2022
 
 This is the repo for the backend client of spotif.ai
 
+See the [backend](https://github.com/PrayusShrestha/spotif.ai)!
+
 ## Features
 
 ![Home/Login page](./assets/spotifai-login.PNG)

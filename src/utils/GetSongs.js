@@ -1,4 +1,4 @@
-const handleSongs = (prompt, token, setItems) => {
+const handleSongs = (prompt, token, setItems, setLoaded) => {
   let params = {
       "phrase": prompt, 
       "token": token,
@@ -17,6 +17,7 @@ const handleSongs = (prompt, token, setItems) => {
     .then((res) => res.json())
     .then((res) => {
         setItems(res);
+        setLoaded(true);
     })
     .catch((err) => {
         console.log(err);

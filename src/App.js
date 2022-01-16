@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import LoginButton from './components/LoginButton';
 import Prompt from './components/Prompt';
+import Results from './components/Results';
+import About from './components/About';
 
 const getReturnedParamsFromSpotifyAuth = (hash) => {
   const stringAfterHashing = hash.substring(1);
@@ -26,20 +28,24 @@ function App() {
   });
 
   let elementToRender;
+  let about = <div></div>;
   if (!logged_in) {
-    elementToRender = <LoginButton></LoginButton>
+    elementToRender = <LoginButton></LoginButton>;
+    about = <About />;
   } else if (logged_in && prompt === "") {
-    elementToRender = <Prompt handle={setPrompt}></Prompt>
+    elementToRender = <Prompt handle={setPrompt}></Prompt>;
   } else {
-    elementToRender = <p>{prompt}</p>
+    elementToRender = <Results prompt={prompt}></Results>;
   }
 
   return (
     <div className="h-full w-full flex flex-col justify-between items-center relative">
-      <div className="flex flex-col max-w-xl w-screen mx-auto h-screen">
+      <div className="flex flex-col max-w-xl w-screen mx-auto">
         <h1 className="text-5xl font-black text-left pt-8">Spotify AI</h1>
         <p className="text-lg py-4">Enter a prompt and find songs!</p>
         {elementToRender}
+        <div className="p-2" />
+        {about}
       </div>
     </div>
   );

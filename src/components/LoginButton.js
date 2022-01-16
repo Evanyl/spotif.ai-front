@@ -7,6 +7,7 @@ const REDIRECT_URL_AFTER_LOGIN = "http://localhost:3000/";
 const SPACE_DELIMETER = "%20";
 const SCOPES = ["user-read-private", "user-read-email"];
 const SCOPES_URL_PARAM = SCOPES.join(SPACE_DELIMETER);
+const RESPONSE_TYPE = "code";
 
 const LoginButton = () => {
     const handleLogin = () =>  {

@@ -17,6 +17,7 @@ const getReturnedParamsFromSpotifyAuth = (hash) => {
 function App() {
   const [logged_in, setLogged_in] = useState(false);
   const [prompt, setPrompt] = useState("");
+  const [songs, setSongs] = useState([]);
 
   useEffect(() => {
     if (window.location.hash) {
@@ -25,13 +26,42 @@ function App() {
     }
   });
 
+ 
+  
+const handleSongs = async (prompt) => {
+  let params = {
+      "prompt": prompt, 
+      "token": process.env.REACT_APP_CLIENT_ID
+  }
+  let url = "http://localhost:8000/api/dummy-post/"; 
+  console.log(url);
+  fetch(url, {
+      method: 'POST',
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(params)
+    })
+    .then((res) => res.json())
+    .then((res) => {
+        setSongs(res.songs);
+        console.log("songs: " + songs + "resp: " + res.songs) 
+    })
+    .catch((err) => {
+        console.log("error");
+    });
+}
+
+
+
   let elementToRender;
   if (!logged_in) {
     elementToRender = <LoginButton></LoginButton>
   } else if (logged_in && prompt === "") {
-    elementToRender = <Prompt handle={setPrompt}></Prompt>
+    elementToRender = <Prompt handlePrompt={setPrompt} getSongs={handleSongs}></Prompt>
   } else {
-    elementToRender = <p>{prompt}</p>
+    elementToRender = <p>{songs}</p>
   }
 
   return (
@@ -39,7 +69,7 @@ function App() {
       <div className="flex flex-col max-w-xl w-screen mx-auto h-screen">
         <h1 className="text-5xl font-black text-left pt-8">Spotify AI</h1>
         <p className="text-lg py-4">Enter a prompt and find songs!</p>
-        {elementToRender}
+          {elementToRender}
       </div>
     </div>
   );

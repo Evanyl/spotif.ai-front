@@ -21,6 +21,11 @@ function App() {
   const [logged_in, setLogged_in] = useState(false);
   const [prompt, setPrompt] = useState("");
 
+  const logout = () => {
+    setLogged_in(false);
+    setPrompt();
+  }
+
   useEffect(() => {
     if (window.location.hash) {
       const {access_token, expires_in, token_type} = getReturnedParamsFromSpotifyAuth(window.location.hash);
@@ -36,13 +41,14 @@ function App() {
   } else if (logged_in && prompt === "") {
     elementToRender = <Prompt handle={setPrompt}></Prompt>;
   } else {
-    elementToRender = <Results prompt={prompt}></Results>;
+    elementToRender = <Results prompt={prompt} handle={logout}></Results>;
   }
 
   return (
     <div className="h-full w-full flex flex-col justify-between items-center relative">
      <div className={`flex flex-col max-w-xl w-screen h-screen mx-auto ${logged_in && prompt !== "" ? "": "top-1/4 translate-y-1/4"}`}>
-        <Title/>
+       <div className="pt-8" />
+        <Title prompt={prompt}/>
           {elementToRender}
         <div className="p-2" />
         {about}

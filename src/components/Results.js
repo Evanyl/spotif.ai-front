@@ -3,25 +3,31 @@ import { useState, useEffect } from 'react';
 
 const Results = (props) => {
     const [items, setItems] = useState([]);
+    const [itemsLoaded, setItemsLoaded] = useState(false);
 
     useEffect(() => {
-        handleSongs(props.prompt, props.token, setItems);
+        handleSongs(props.prompt, props.token, setItems, setItemsLoaded);
     }, [props.prompt]);
+
+    let displayComp = <p className="text-white text-xl">loading</p>;
+    if (itemsLoaded) {
+        displayComp = <div className="flex flex-col w-full max-w-2xl border-t">
+        {items.map((item, index) => {
+            return <Song key={index}
+                         artist={item.artist_name}
+                         songTitle={item.name}
+                         albumImage={item.album_image_url}
+                         songUrl={item.external_url} />
+        })}
+    </div>;
+    }
 
 
     return (
         <div className="flex flex-col items-center">
             <h2 className="text-2xl p-4 uppercase font-extrabold">{props.prompt}</h2>
             <div className="p-2" />
-            <div className="flex flex-col w-full max-w-2xl border-t">
-                {items.map((item, index) => {
-                    return <Song key={index}
-                                 artist={item.artist_name}
-                                 songTitle={item.name}
-                                 albumImage={item.album_image_url}
-                                 songUrl={item.external_url} />
-                })}
-            </div>
+            {displayComp}
         </div>
     )
 }
